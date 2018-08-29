@@ -1,11 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
+
+    @if(count($errors) > 0)
+        <ul class="list-group">
+            @foreach($errors->all() as $error)
+                <li class="list-group-item text-danger">
+                    {{$error}}
+                </li>
+            @endforeach
+        </ul>
+
+    @endif
+
 <div class="card">
         <div class="card-header">Dashboard</div>
            
         <div class="card-body">
-            <form action="{{route('post.store')}}" method="POST">
+            <form action="{{route('post.store')}}" method="POST" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="title"> Title </label>
